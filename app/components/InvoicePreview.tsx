@@ -76,7 +76,7 @@ export default function InvoicePreview({ data, onBack }: InvoicePreviewProps) {
         height: invoiceRef.current.offsetHeight,
       });
 
-      const imgData = canvas.toDataURL("image/png");
+      const imgData = canvas.toDataURL("image/jpeg", 0.8);
       const pdf = new jsPDF({
         orientation: "portrait",
         unit: "mm",
@@ -89,12 +89,12 @@ export default function InvoicePreview({ data, onBack }: InvoicePreviewProps) {
       const imgHeight = pdfWidth * canvasAspect;
 
       if (imgHeight <= pdfHeight) {
-        pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, imgHeight);
+        pdf.addImage(imgData, "JPEG", 0, 0, pdfWidth, imgHeight);
       } else {
         let yOffset = 0;
         while (yOffset < imgHeight) {
           if (yOffset > 0) pdf.addPage();
-          pdf.addImage(imgData, "PNG", 0, -yOffset, pdfWidth, imgHeight);
+          pdf.addImage(imgData, "JPEG", 0, -yOffset, pdfWidth, imgHeight);
           yOffset += pdfHeight;
         }
       }
@@ -122,19 +122,19 @@ export default function InvoicePreview({ data, onBack }: InvoicePreviewProps) {
       height: invoiceRef.current.offsetHeight,
     });
 
-    const imgData = canvas.toDataURL("image/png");
+    const imgData = canvas.toDataURL("image/jpeg", 0.8);
     const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
     const pdfWidth = pdf.internal.pageSize.getWidth();
     const pdfHeight = pdf.internal.pageSize.getHeight();
     const imgHeight = pdfWidth * (canvas.height / canvas.width);
 
     if (imgHeight <= pdfHeight) {
-      pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, imgHeight);
+      pdf.addImage(imgData, "JPEG", 0, 0, pdfWidth, imgHeight);
     } else {
       let yOffset = 0;
       while (yOffset < imgHeight) {
         if (yOffset > 0) pdf.addPage();
-        pdf.addImage(imgData, "PNG", 0, -yOffset, pdfWidth, imgHeight);
+        pdf.addImage(imgData, "JPEG", 0, -yOffset, pdfWidth, imgHeight);
         yOffset += pdfHeight;
       }
     }
