@@ -199,9 +199,9 @@ export default function InvoicePreview({ data, onBack }: InvoicePreviewProps) {
 
   return (
     <div
+      className="preview-outer-padding"
       style={{
         minHeight: "100vh",
-        padding: "40px 24px 80px",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -210,15 +210,9 @@ export default function InvoicePreview({ data, onBack }: InvoicePreviewProps) {
     >
       {/* Top Bar */}
       <div
-        className="animate-fade-in"
+        className="animate-fade-in preview-top-bar"
         style={{
-          width: "100%",
-          maxWidth: "780px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
           gap: "16px",
-          flexWrap: "wrap",
         }}
       >
         <button
@@ -249,14 +243,7 @@ export default function InvoicePreview({ data, onBack }: InvoicePreviewProps) {
           Edit Invoice
         </button>
 
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "10px",
-            flexWrap: "wrap",
-          }}
-        >
+        <div className="preview-actions">
           {/* Download Button */}
           <button
             id="download-pdf-btn"
@@ -449,9 +436,8 @@ export default function InvoicePreview({ data, onBack }: InvoicePreviewProps) {
 
       {/* Invoice Document */}
       <div
-        className="animate-fade-in-up"
+        className="animate-fade-in-up invoice-doc-wrapper"
         style={{
-          width: "100%",
           maxWidth: "780px",
           borderRadius: "4px",
           overflow: "hidden",
@@ -471,19 +457,11 @@ export default function InvoicePreview({ data, onBack }: InvoicePreviewProps) {
             color: "#1a1a1a",
             fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif",
             padding: "0",
-            minHeight: "1000px",
             position: "relative",
           }}
         >
           {/* ── HEADER with wave ── */}
-          <div
-            style={{
-              position: "relative",
-              background: "#ffffff",
-              height: "160px",
-              overflow: "hidden",
-            }}
-          >
+          <div className="invoice-header-wave">
             {/* SVG wave that curves from dark to white */}
             <svg
               viewBox="0 0 800 160"
@@ -508,80 +486,32 @@ export default function InvoicePreview({ data, onBack }: InvoicePreviewProps) {
             </svg>
 
             {/* Logo / Brand name — left */}
-            <div
-              style={{
-                position: "absolute",
-                left: "40px",
-                top: "50%",
-                transform: "translateY(-50%)",
-                display: "flex",
-                alignItems: "center",
-                gap: "12px",
-                zIndex: 2,
-              }}
-            >
+            <div className="invoice-brand-area">
               {/* Logo image from /public */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/logo.png"
                 alt={brandName}
-                style={{
-                  height: "60px",
-                  width: "auto",
-                  objectFit: "contain",
-                  flexShrink: 0,
-                  mixBlendMode: "screen",
-                }}
+                className="invoice-brand-logo"
               />
-              <span
-                style={{
-                  color: "white",
-                  fontSize: "20px",
-                  fontWeight: 800,
-                  letterSpacing: "0.05em",
-                  textTransform: "uppercase",
-                }}
-              >
+              <span className="invoice-brand-name">
                 {brandName}
               </span>
             </div>
 
             {/* INVOICE text — right side, in the white area */}
-            <div
-              style={{
-                position: "absolute",
-                right: "40px",
-                bottom: "20px",
-                zIndex: 2,
-              }}
-            >
-              <span
-                style={{
-                  fontSize: "48px",
-                  fontWeight: 300,
-                  letterSpacing: "0.18em",
-                  color: "#3a3a3a",
-                  textTransform: "uppercase",
-                  fontFamily: "'Inter', sans-serif",
-                }}
-              >
+            <div className="invoice-title-area">
+              <span className="invoice-header-text">
                 INVOICE
               </span>
             </div>
           </div>
 
           {/* ── BODY ── */}
-          <div style={{ padding: "40px 48px 0" }}>
+          <div className="invoice-body-padding">
 
             {/* Meta row: ISSUED TO | INVOICE NO */}
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr",
-                gap: "32px",
-                marginBottom: "32px",
-              }}
-            >
+            <div className="invoice-meta-grid">
               {/* Left: Issued To */}
               <div>
                 <p
@@ -607,7 +537,7 @@ export default function InvoicePreview({ data, onBack }: InvoicePreviewProps) {
               </div>
 
               {/* Right: Invoice meta */}
-              <div style={{ textAlign: "right" }}>
+              <div className="invoice-meta-right">
                 <div
                   style={{
                     display: "grid",
@@ -702,16 +632,7 @@ export default function InvoicePreview({ data, onBack }: InvoicePreviewProps) {
             {/* ── Items Table ── */}
             <div style={{ marginBottom: "0" }}>
               {/* Table header */}
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "2fr 1fr 80px 1fr",
-                  gap: "8px",
-                  paddingBottom: "10px",
-                  borderBottom: "1.5px solid #1a1a1a",
-                  marginBottom: "0",
-                }}
-              >
+              <div className="invoice-items-header">
                 {["DESCRIPTION", "UNIT PRICE", "QTY", "TOTAL"].map((h, i) => (
                   <p
                     key={h}
@@ -733,24 +654,16 @@ export default function InvoicePreview({ data, onBack }: InvoicePreviewProps) {
               {items.map((it, i) => (
                 <div
                   key={i}
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "2fr 1fr 80px 1fr",
-                    gap: "8px",
-                    padding: "16px 0",
-                    borderBottom: "1px solid #e5e5e5",
-                  }}
+                  className="invoice-item-row"
                 >
-                  <p style={{ fontSize: "14px", color: "#333" }}>
-                    {it.description}
-                  </p>
-                  <p style={{ fontSize: "14px", color: "#333", textAlign: "right" }}>
+                  <p className="invoice-item-cell">{it.description}</p>
+                  <p className="invoice-item-cell" style={{ textAlign: "right" }}>
                     {formatNumber(it.unitPrice)}
                   </p>
-                  <p style={{ fontSize: "14px", color: "#333", textAlign: "right" }}>
+                  <p className="invoice-item-cell" style={{ textAlign: "right" }}>
                     {it.quantity}
                   </p>
-                  <p style={{ fontSize: "14px", color: "#333", textAlign: "right" }}>
+                  <p className="invoice-item-cell" style={{ textAlign: "right" }}>
                     {formatNumber(it.unitPrice * it.quantity)}
                   </p>
                 </div>
@@ -762,7 +675,7 @@ export default function InvoicePreview({ data, onBack }: InvoicePreviewProps) {
           </div>
 
           {/* ── Totals + Footer ── */}
-          <div style={{ padding: "0 48px 32px" }}>
+          <div className="invoice-totals-padding">
             {/* Divider */}
             <div style={{ borderTop: "1.5px solid #1a1a1a", marginBottom: "20px" }} />
 
@@ -775,7 +688,7 @@ export default function InvoicePreview({ data, onBack }: InvoicePreviewProps) {
               }}
             >
               {/* Right: Subtotal / Discount / Total */}
-              <div style={{ textAlign: "right", minWidth: "250px" }}>
+              <div className="invoice-totals-box">
                 <div
                   style={{
                     display: "flex",
@@ -945,18 +858,7 @@ export default function InvoicePreview({ data, onBack }: InvoicePreviewProps) {
           </div>
 
           {/* ── Contact Footer Bar ── */}
-          <div
-            style={{
-              borderTop: "1px solid #ddd",
-              padding: "14px 48px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              flexWrap: "wrap",
-              gap: "12px",
-              background: "#fafafa",
-            }}
-          >
+          <div className="invoice-footer-bar">
             {/* Phone */}
             {phone && (
               <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
