@@ -9,11 +9,9 @@ import {
   Calendar,
   Clock,
   FileText,
-  Banknote,
   MessageSquare,
   ArrowRight,
   Lock,
-  Sparkles,
   Landmark,
   CreditCard,
   Phone,
@@ -285,19 +283,7 @@ function ItemRow({ index, item, onChange, onRemove, canRemove }: ItemRowProps) {
     (parseFloat(item.unitPrice) || 0) * (parseInt(item.quantity) || 0);
 
   return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "2fr 1fr 80px auto",
-        gap: "10px",
-        alignItems: "end",
-        padding: "14px 16px",
-        background: "rgba(255,255,255,0.025)",
-        borderRadius: "12px",
-        border: "1px solid rgba(255,255,255,0.06)",
-        transition: "border-color 0.2s ease",
-      }}
-    >
+    <div className="item-row-grid">
       {/* Description */}
       <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
         {index === 0 && (
@@ -589,13 +575,13 @@ export default function InvoiceForm({ onSubmit }: InvoiceFormProps) {
 
   return (
     <div
+      className="form-outer-padding"
       style={{
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "flex-start",
-        padding: "60px 24px 80px",
         position: "relative",
       }}
     >
@@ -638,7 +624,7 @@ export default function InvoiceForm({ onSubmit }: InvoiceFormProps) {
       {/* Form Card */}
       <form
         onSubmit={handleSubmit}
-        className="animate-fade-in-up"
+        className="animate-fade-in-up form-card-padding"
         style={{
           width: "100%",
           maxWidth: "720px",
@@ -647,7 +633,6 @@ export default function InvoiceForm({ onSubmit }: InvoiceFormProps) {
           WebkitBackdropFilter: "blur(24px)",
           border: "1px solid rgba(255, 255, 255, 0.06)",
           borderRadius: "24px",
-          padding: "40px",
           boxShadow:
             "0 40px 80px rgba(0, 0, 0, 0.6), 0 0 1px rgba(255,255,255,0.08)",
           animationDelay: "0.1s",
@@ -692,12 +677,8 @@ export default function InvoiceForm({ onSubmit }: InvoiceFormProps) {
           />
 
           <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "16px",
-              marginBottom: "16px",
-            }}
+            className="grid-2col"
+            style={{ marginBottom: "16px" }}
           >
             <InputField
               id="firstName"
@@ -750,13 +731,7 @@ export default function InvoiceForm({ onSubmit }: InvoiceFormProps) {
           />
 
           <div style={{ display: "grid", gap: "16px" }}>
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr 1fr",
-                gap: "16px",
-              }}
-            >
+            <div className="grid-3col">
               <InputField
                 id="invoiceNumber"
                 label="Invoice #"
@@ -870,17 +845,7 @@ export default function InvoiceForm({ onSubmit }: InvoiceFormProps) {
             </div>
 
             {/* Discount + live total */}
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr",
-                gap: "16px",
-                padding: "16px",
-                background: "rgba(255,255,255,0.025)",
-                borderRadius: "12px",
-                border: "1px solid rgba(255,255,255,0.06)",
-              }}
-            >
+            <div className="discount-grid">
               <InputField
                 id="discount"
                 label="Discount %"
@@ -999,13 +964,7 @@ export default function InvoiceForm({ onSubmit }: InvoiceFormProps) {
             title="Contact & Social (Footer)"
             accentColor="rgba(236, 72, 153, 0.15)"
           />
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "16px",
-            }}
-          >
+          <div className="grid-2col">
             <InputField
               id="phone"
               label="Phone"
