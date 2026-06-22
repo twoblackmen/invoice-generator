@@ -154,3 +154,385 @@ body::after {
   background: var(--accent-primary);
   border-radius: 3px;
 }
+
+/* ─── Mobile Responsiveness ──────────────────────────────────── */
+
+/* Prevent horizontal scroll on the whole page */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* ── Form responsive helpers ── */
+.grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.grid-3col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+
+.item-row-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 80px auto;
+  gap: 10px;
+  align-items: end;
+  padding: 14px 16px;
+  background: rgba(255,255,255,0.025);
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: border-color 0.2s ease;
+}
+
+.discount-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 16px;
+  background: rgba(255,255,255,0.025);
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* ── Invoice preview layout helpers ── */
+
+/* Invoice document outer wrapper */
+.invoice-doc-wrapper {
+  width: 100%;
+}
+
+/* Outer wrapper scroll (legacy fallback) */
+.invoice-scroll-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Invoice header wave */
+.invoice-header-wave {
+  position: relative;
+  background: #ffffff;
+  height: 160px;
+  overflow: hidden;
+}
+
+/* Invoice brand logo */
+.invoice-brand-logo {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+  mix-blend-mode: screen;
+}
+
+/* Invoice brand name text */
+.invoice-brand-name {
+  color: white;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Invoice brand area positioning */
+.invoice-brand-area {
+  position: absolute;
+  left: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 2;
+}
+
+/* INVOICE title area positioning */
+.invoice-title-area {
+  position: absolute;
+  right: 40px;
+  bottom: 20px;
+  z-index: 2;
+}
+
+/* INVOICE title text */
+.invoice-header-text {
+  font-size: 48px;
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  color: #3a3a3a;
+  text-transform: uppercase;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Invoice body padding */
+.invoice-body-padding {
+  padding: 40px 48px 0;
+}
+
+/* Invoice totals/footer padding */
+.invoice-totals-padding {
+  padding: 0 48px 32px;
+}
+
+/* Invoice meta grid (ISSUED TO | INVOICE NO) */
+.invoice-meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+/* Invoice meta right column */
+.invoice-meta-right {
+  text-align: right;
+}
+
+/* Invoice items table header */
+.invoice-items-header {
+  display: grid;
+  grid-template-columns: 2fr 1fr 80px 1fr;
+  gap: 8px;
+  padding-bottom: 10px;
+  border-bottom: 1.5px solid #1a1a1a;
+}
+
+/* Invoice items rows */
+.invoice-item-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 80px 1fr;
+  gap: 8px;
+  padding: 16px 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+/* Invoice item cell */
+.invoice-item-cell {
+  font-size: 14px;
+  color: #333;
+}
+
+/* Invoice totals box */
+.invoice-totals-box {
+  text-align: right;
+  min-width: 250px;
+}
+
+/* Invoice footer bar */
+.invoice-footer-bar {
+  border-top: 1px solid #ddd;
+  padding: 14px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  background: #fafafa;
+}
+
+/* Preview top bar */
+.preview-top-bar {
+  width: 100%;
+  max-width: 780px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Preview action buttons container */
+.preview-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Form card padding */
+.form-card-padding {
+  padding: 40px;
+}
+
+/* Form outer padding */
+.form-outer-padding {
+  padding: 60px 24px 80px;
+}
+
+/* Preview outer padding */
+.preview-outer-padding {
+  padding: 40px 24px 80px;
+}
+
+/* ── Mobile overrides ─────────────────────────────────────────── */
+@media (max-width: 600px) {
+
+  /* --- Form overrides --- */
+
+  .form-outer-padding {
+    padding: 32px 16px 60px;
+  }
+
+  .form-card-padding {
+    padding: 24px 16px;
+  }
+
+  .grid-2col {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-3col {
+    grid-template-columns: 1fr;
+  }
+
+  .item-row-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    padding: 12px;
+    gap: 8px;
+  }
+
+  .item-row-grid > div:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .discount-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* --- Preview shell overrides --- */
+
+  .preview-outer-padding {
+    padding: 20px 12px 48px;
+  }
+
+  .preview-top-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .preview-actions {
+    width: 100%;
+    gap: 8px;
+  }
+
+  .preview-actions button {
+    flex: 1;
+    justify-content: center;
+    padding: 10px 12px !important;
+    font-size: 13px !important;
+    min-width: 0 !important;
+  }
+
+  /* --- Invoice document overrides --- */
+
+  /* Invoice document: no min-width, fit the screen */
+  #invoice-document {
+    min-width: unset;
+    width: 100%;
+  }
+
+  /* Shorter header on mobile */
+  .invoice-header-wave {
+    height: 100px;
+  }
+
+  /* Smaller logo */
+  .invoice-brand-logo {
+    height: 38px;
+  }
+
+  /* Smaller brand name */
+  .invoice-brand-name {
+    font-size: 13px;
+    letter-spacing: 0.04em;
+  }
+
+  /* Brand area: tighter left position */
+  .invoice-brand-area {
+    left: 16px;
+    gap: 8px;
+  }
+
+  /* INVOICE title: smaller and repositioned */
+  .invoice-title-area {
+    right: 14px;
+    bottom: 10px;
+  }
+
+  .invoice-header-text {
+    font-size: 22px;
+    letter-spacing: 0.12em;
+  }
+
+  /* Tighter body padding */
+  .invoice-body-padding {
+    padding: 18px 14px 0;
+  }
+
+  .invoice-totals-padding {
+    padding: 0 14px 20px;
+  }
+
+  /* Meta grid: stack on mobile */
+  .invoice-meta-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  /* Meta right: left-align on mobile */
+  .invoice-meta-right {
+    text-align: left;
+  }
+
+  /* Meta right inner grid: align to start */
+  .invoice-meta-right > div {
+    justify-content: start !important;
+  }
+
+  /* Items table: tighter columns on mobile */
+  .invoice-items-header {
+    grid-template-columns: 1.8fr 1fr 36px 1fr;
+    gap: 4px;
+    padding-bottom: 8px;
+  }
+
+  .invoice-item-row {
+    grid-template-columns: 1.8fr 1fr 36px 1fr;
+    gap: 4px;
+    padding: 10px 0;
+  }
+
+  /* Smaller item cell text on mobile */
+  .invoice-item-cell {
+    font-size: 11px;
+    word-break: break-word;
+  }
+
+  /* Items table header text */
+  .invoice-items-header p {
+    font-size: 9px !important;
+    letter-spacing: 0.06em !important;
+  }
+
+  /* Totals box: full width on mobile */
+  .invoice-totals-box {
+    min-width: unset;
+    width: 100%;
+  }
+
+  /* Invoice footer bar */
+  .invoice-footer-bar {
+    padding: 12px 14px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
+
+
