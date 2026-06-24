@@ -1,13 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-// Increase body size limit to 10MB to accommodate base64-encoded PDF payloads
-export const config = {
-  api: {
-    bodyParser: {
-      sizeLimit: "10mb",
-    },
-  },
-};
+
 
 export async function POST(req: NextRequest) {
   const webhookUrl = process.env.NEXT_PUBLIC_WEBHOOK_URL;
